@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>閱讀器｜星象之印</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .reader {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 60px 24px 120px;
+    }
+    #chapter-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: #D4AF37;
+      margin-bottom: 40px;
+      line-height: 1.4;
+    }
+    #chapter-content {
+      font-size: 19px;
+      line-height: 2;
+      color: #ddd;
+      transition: font-size 0.2s;
+    }
+    #chapter-content p {
+      margin: 0 0 1.5em;
+      text-indent: 2em;
+    }
+    .chapter-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 60px;
+      padding-top: 24px;
+      border-top: 1px solid #1e2a3a;
+      gap: 12px;
+    }
+    .chapter-nav a {
+      color: #D4AF37;
+      text-decoration: none;
+      font-size: 14px;
+      padding: 8px 16px;
+      border: 1px solid #2a3a4a;
+      border-radius: 6px;
+      transition: all 0.2s;
+      max-width: 200px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .chapter-nav a:hover:not(.disabled) {
+      border-color: #D4AF37;
+      background: rgba(212,175,55,0.08);
+    }
+    .chapter-nav a.disabled {
+      color: #444;
+      cursor: default;
+      border-color: #1a2030;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="starfield"></div>
+  <canvas id="startrail"></canvas>
+
+  <div class="reader-header">
+    <a href="chapter-list.html" class="back-btn">← 返回章節</a>
+
+    <div class="reader-controls">
+      <button id="font-small">A-</button>
+      <button id="font-large">A+</button>
+      <button id="toggle-dark">夜間模式</button>
+    </div>
+  </div>
+
+  <section class="reader">
+    <h1 id="chapter-title">載入中…</h1>
+    <div id="chapter-content"></div>
+  </section>
+
+  <script src="star.js"></script>
+  <script src="reader.js"></script>
+</body>
+</html>

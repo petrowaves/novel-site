@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>星象之印｜官方網站</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 星點粒子 + 星軌 -->
+  <div id="starfield"></div>
+  <canvas id="startrail"></canvas>
+
+  <!-- Hero 區（無文字背景圖） -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>星象之印</h1>
+      <p class="subtitle">探索未知的古文明，揭開星空的祕密</p>
+      <a href="#characters" class="btn">開始閱讀</a>
+    </div>
+  </section>
+
+  <!-- 有聲書區 -->
+  <section class="audiobook">
+    <h2>有聲書</h2>
+
+    <div class="audio-container">
+      <div class="audio-cover"></div>
+
+      <div class="audio-info">
+        <h3>第一章：星象的召喚</h3>
+        <p>由專業聲優演繹，帶你沉浸在星象與命運交織的世界。</p>
+
+        <div class="audio-player">
+          <button class="play-btn">▶</button>
+          <div class="progress-bar">
+            <div class="progress"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 封面展示區（使用無文字封面） -->
+  <section class="cover">
+    <h2>小說封面</h2>
+    <div class="cover-container">
+      <img src="cover-main.jpg" alt="星象之印封面">
+      <div class="cover-text">
+        <p>在浩瀚的星空下，人類只是地球漫長生命中的過客，而古文明遺跡中藏著解開歷史之謎的線索。探索未知的冒險旅程，揭開埋藏千年的秘密。</p>
+        <p><strong>小說類型：</strong>冒險、愛情、戰鬥、考古</p>
+        <a href="chapter-list.html" class="btn">進入作品</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 星象之印｜All Rights Reserved</p>
+    <p>Email：contact@starprint.com</p>
+  </footer>
+
+  <script src="star.js"></script>
+</body>
+</html>
