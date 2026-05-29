@@ -8,32 +8,27 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <!-- 星點粒子 + 星軌 -->
   <div id="starfield"></div>
   <canvas id="startrail"></canvas>
 
-  <!-- Hero 區（無文字背景圖） -->
+  <!-- Hero -->
   <section class="hero">
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <h1>星象之印</h1>
       <p class="subtitle">探索未知的古文明，揭開星空的祕密</p>
-      <a href="#characters" class="btn">開始閱讀</a>
+      <a href="chapter-list.html" class="btn">開始閱讀</a>
     </div>
   </section>
 
-  <!-- 有聲書區 -->
+  <!-- 有聲書（暫時隱藏）
   <section class="audiobook">
     <h2>有聲書</h2>
-
     <div class="audio-container">
       <div class="audio-cover"></div>
-
       <div class="audio-info">
         <h3>第一章：星象的召喚</h3>
         <p>由專業聲優演繹，帶你沉浸在星象與命運交織的世界。</p>
-
         <div class="audio-player">
           <button class="play-btn">▶</button>
           <div class="progress-bar">
@@ -43,8 +38,9 @@
       </div>
     </div>
   </section>
+  -->
 
-  <!-- 封面展示區（使用無文字封面） -->
+  <!-- 封面展示 -->
   <section class="cover">
     <h2>小說封面</h2>
     <div class="cover-container">
@@ -63,5 +59,6 @@
   </footer>
 
   <script src="star.js"></script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"d129161458934b1db8397109e975fe10","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>

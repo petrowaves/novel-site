@@ -1,34 +1,52 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>章節列表｜星象之印</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;600&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
+    .top-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      padding: 16px 24px;
+      background: rgba(5, 8, 20, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+    }
+    .top-nav a {
+      color: #D4AF37;
+      text-decoration: none;
+      font-size: 13px;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .top-nav a:hover { opacity: 1; }
     .novel-meta {
       text-align: center;
       margin-bottom: 48px;
     }
-
     .novel-meta h1 {
       font-family: 'Playfair Display', serif;
       font-size: 42px;
       color: #D4AF37;
       margin: 0 0 12px;
     }
-
     .novel-meta p {
       color: #aaa;
       font-size: 16px;
       max-width: 560px;
       margin: 0 auto;
     }
-
     .chapter-count {
       display: inline-block;
       margin-top: 12px;
@@ -38,7 +56,6 @@
       padding: 4px 14px;
       border-radius: 20px;
     }
-
     .chapter-container {
       display: flex;
       flex-direction: column;
@@ -47,8 +64,6 @@
       margin: 0 auto;
       padding: 0 20px;
     }
-
-    /* 已解鎖 */
     a.chapter-card {
       display: flex;
       align-items: center;
@@ -62,15 +77,12 @@
       transition: all 0.25s;
       backdrop-filter: blur(4px);
     }
-
     a.chapter-card:hover {
       border-color: #D4AF37;
       color: #D4AF37;
       background: rgba(212, 175, 55, 0.06);
       transform: translateX(4px);
     }
-
-    /* 未解鎖 */
     .chapter-card.locked {
       display: flex;
       align-items: center;
@@ -83,7 +95,6 @@
       backdrop-filter: blur(4px);
       cursor: default;
     }
-
     .chapter-num {
       font-family: 'Playfair Display', serif;
       font-size: 13px;
@@ -91,49 +102,23 @@
       opacity: 0.6;
       min-width: 36px;
     }
-
-    .chapter-num.locked {
-      color: #2a3a4a;
-      opacity: 1;
-    }
-
-    .chapter-title {
-      flex: 1;
-      font-size: 15px;
-    }
-
-    .lock-info {
-      font-size: 11px;
-      text-align: right;
-      white-space: nowrap;
-    }
-
-    .lock-days {
-      color: #D4AF37;
-      opacity: 0.5;
-      font-size: 12px;
-    }
-
-    .loading {
-      text-align: center;
-      padding: 80px;
-      color: #D4AF37;
-      opacity: 0.6;
-    }
-
-    .error-msg {
-      text-align: center;
-      padding: 60px;
-      color: #ff6b6b;
-    }
+    .chapter-num.locked { color: #2a3a4a; opacity: 1; }
+    .chapter-title { flex: 1; font-size: 15px; }
+    .lock-days { color: #D4AF37; opacity: 0.5; font-size: 12px; }
+    .loading { text-align: center; padding: 80px; color: #D4AF37; opacity: 0.6; }
+    .error-msg { text-align: center; padding: 60px; color: #ff6b6b; }
   </style>
 </head>
-
 <body>
   <div id="starfield"></div>
   <canvas id="startrail"></canvas>
 
-  <section style="padding:80px 0 100px;">
+  <!-- 頂部導航 -->
+  <nav class="top-nav">
+    <a href="index.html">← 返回首頁</a>
+  </nav>
+
+  <section style="padding:100px 0 100px;">
     <div class="novel-meta" id="novel-meta">
       <div class="loading">載入中…</div>
     </div>
@@ -146,7 +131,6 @@
 
   <script src="star.js"></script>
   <script>
-    // 部署後改成你的後端網址
     const API_BASE = "https://api.petrowaves.tw";
     const NOVEL_SLUG = "xingxiangzhiyin";
 
@@ -176,7 +160,6 @@
 
         document.title = `章節列表｜${novel.title}`;
 
-        // 只顯示 published 的章節（草稿完全隱藏）
         const chs = (novel.chapters || [])
           .filter(ch => ch.status === "published")
           .sort((a, b) => a.order - b.order);
@@ -221,5 +204,4 @@
     loadNovel();
   </script>
 </body>
-
 </html>
