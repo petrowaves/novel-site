@@ -1,6 +1,7 @@
 // ── 設定 ────────────────────────────────────────────────────────────────────
 const API_BASE   = "https://api.petrowaves.tw";
-const SHOPEE_URL = "https://shopee.tw";
+const SHOPEE_URL = "https://s.shopee.tw/7KuGjr0TKA?share_channel_code=6";
+const SHOPEE_COOLDOWN_MS = 24 * 60 * 60 * 1000; // 24小時
 
 // ── 從 URL 取得參數 ──────────────────────────────────────────────────────────
 const params    = new URLSearchParams(window.location.search);
@@ -8,8 +9,8 @@ const novelSlug = params.get("slug") || "xingxiangzhiyin";
 const chapterId = parseInt(params.get("ch")) || 0;
 
 // ── DOM 元素 ─────────────────────────────────────────────────────────────────
-const titleEl    = document.getElementById("chapter-title");
-const contentEl  = document.getElementById("chapter-content");
+const titleEl     = document.getElementById("chapter-title");
+const contentEl   = document.getElementById("chapter-content");
 const fontDisplay = document.getElementById("font-display");
 
 // ── 字體大小控制 ─────────────────────────────────────────────────────────────
@@ -35,13 +36,21 @@ document.getElementById("toggle-dark").onclick = () => {
 
 applyFont();
 
-// ── 蝦皮跳轉解鎖機制 ─────────────────────────────────────────────────────────
-function getShopeeKey(nextId) { return `shopee_visited_${novelSlug}_${nextId}`; }
-function hasVisitedShopee(nextId) { return localStorage.getItem(getShopeeKey(nextId)) === "1"; }
-function markShopeeVisited(nextId) { localStorage.setItem(getShopeeKey(nextId), "1"); }
+// ── 蝦皮跳轉（24小時冷卻）────────────────────────────────────────────────────
+const SHOPEE_KEY = `shopee_last_visit_${novelSlug}`;
+
+function needsShopeeVisit() {
+  const last = localStorage.getItem(SHOPEE_KEY);
+  if (!last) return true;
+  return Date.now() - parseInt(last) > SHOPEE_COOLDOWN_MS;
+}
+
+function markShopeeVisit() {
+  localStorage.setItem(SHOPEE_KEY, String(Date.now()));
+}
 
 function goToShopeeAndWait(nextId) {
-  markShopeeVisited(nextId);
+  markShopeeVisit();
   window.open(SHOPEE_URL, "_blank");
   window.addEventListener("focus", function onFocus() {
     window.removeEventListener("focus", onFocus);
@@ -97,9 +106,11 @@ async function loadChapter() {
     let nextHtml;
     if (!next) {
       nextHtml = `<a class="disabled">已是最新章 →</a>`;
-    } else if (hasVisitedShopee(next.id)) {
+    } else if (!needsShopeeVisit()) {
+      // 24小時內去過蝦皮，直接跳轉
       nextHtml = `<a href="reader.html?slug=${novelSlug}&ch=${next.id}">${next.title} →</a>`;
     } else {
+      // 需要先去蝦皮
       nextHtml = `<a id="next-shopee-btn" style="cursor:pointer">${next.title} →</a>`;
     }
 

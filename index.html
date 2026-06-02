@@ -11,13 +11,12 @@
   <div id="starfield"></div>
   <canvas id="startrail"></canvas>
 
-  <!-- Hero -->
   <section class="hero">
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <h1>星象之印</h1>
       <p class="subtitle">探索未知的古文明，揭開星空的祕密</p>
-      <a href="#" class="btn" id="btn-start">開始閱讀</a>
+      <a href="chapter-list.html" class="btn">開始閱讀</a>
     </div>
   </section>
 
@@ -25,7 +24,6 @@
   <section class="audiobook">...</section>
   -->
 
-  <!-- 封面展示 -->
   <section class="cover">
     <h2>小說封面</h2>
     <div class="cover-container">
@@ -33,7 +31,7 @@
       <div class="cover-text">
         <p>在浩瀚的星空下，人類只是地球漫長生命中的過客，而古文明遺跡中藏著解開歷史之謎的線索。探索未知的冒險旅程，揭開埋藏千年的秘密。</p>
         <p><strong>小說類型：</strong>冒險、愛情、戰鬥、考古</p>
-        <a href="#" class="btn" id="btn-enter">進入作品</a>
+        <a href="chapter-list.html" class="btn">進入作品</a>
       </div>
     </div>
   </section>
@@ -44,37 +42,6 @@
   </footer>
 
   <script src="star.js"></script>
-  <script>
-    const SHOPEE_URL   = "https://shopee.tw";
-    const CHAPTER_URL  = "chapter-list.html";
-    const SHOPEE_KEY   = "shopee_home_visited";
-
-    function hasVisited() {
-      return localStorage.getItem(SHOPEE_KEY) === "1";
-    }
-
-    function goToShopee(destination) {
-      localStorage.setItem(SHOPEE_KEY, "1");
-      window.open(SHOPEE_URL, "_blank");
-      window.addEventListener("focus", function onFocus() {
-        window.removeEventListener("focus", onFocus);
-        window.location.href = destination;
-      });
-    }
-
-    function handleClick(e) {
-      e.preventDefault();
-      if (hasVisited()) {
-        window.location.href = CHAPTER_URL;
-      } else {
-        goToShopee(CHAPTER_URL);
-      }
-    }
-
-    document.getElementById("btn-start").addEventListener("click", handleClick);
-    document.getElementById("btn-enter").addEventListener("click", handleClick);
-  </script>
-
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"d129161458934b1db8397109e975fe10","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
